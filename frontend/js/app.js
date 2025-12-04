@@ -1,4 +1,4 @@
-// app.js - Frontend actualizado para producción
+// app.js - Frontend actualizado para producción con tabla oculta
 
 // Detectar automáticamente si estamos en desarrollo o producción
 const API_URL = window.location.hostname === 'localhost' 
@@ -15,6 +15,9 @@ const btnCancel = document.getElementById('btn-cancel');
 const usuarioIdInput = document.getElementById('usuario-id');
 const tbody = document.getElementById('usuarios-tbody');
 const notification = document.getElementById('notification');
+const tableSection = document.getElementById('table-section');
+const btnConsultar = document.getElementById('btn-consultar');
+const btnCloseTable = document.getElementById('btn-close-table');
 
 // Variables del formulario
 const nombreInput = document.getElementById('nombre');
@@ -24,18 +27,45 @@ const edadInput = document.getElementById('edad');
 
 // Estado de la aplicación
 let modoEdicion = false;
+let tablaVisible = false;
 
 // Inicializar aplicación
 document.addEventListener('DOMContentLoaded', () => {
   console.log('✅ Aplicación iniciada');
-  cargarUsuarios();
   configurarEventos();
+  // NO cargamos usuarios automáticamente, solo cuando se consulte
 });
 
 // Configurar eventos
 function configurarEventos() {
   form.addEventListener('submit', manejarSubmit);
   btnCancel.addEventListener('click', cancelarEdicion);
+  btnConsultar.addEventListener('click', toggleTabla);
+  btnCloseTable.addEventListener('click', ocultarTabla);
+}
+
+// Mostrar/Ocultar tabla
+function toggleTabla() {
+  if (tablaVisible) {
+    ocultarTabla();
+  } else {
+    mostrarTabla();
+  }
+}
+
+// Mostrar tabla y cargar datos
+function mostrarTabla() {
+  tableSection.style.display = 'block';
+  tablaVisible = true;
+  btnConsultar.textContent = '🔼 Ocultar Registros';
+  cargarUsuarios();
+}
+
+// Ocultar tabla
+function ocultarTabla() {
+  tableSection.style.display = 'none';
+  tablaVisible = false;
+  btnConsultar.textContent = '📋 Consultar Registros';
 }
 
 // Cargar todos los usuarios
@@ -146,7 +176,11 @@ async function crearUsuario(usuario) {
     if (result.success) {
       mostrarNotificacion('✅ Usuario creado exitosamente', 'success');
       form.reset();
-      cargarUsuarios();
+      
+      // Si la tabla está visible, recargar datos
+      if (tablaVisible) {
+        cargarUsuarios();
+      }
     } else {
       mostrarNotificacion(result.mensaje || '❌ Error al crear usuario', 'error');
     }
@@ -205,7 +239,11 @@ async function actualizarUsuario(id, usuario) {
     if (result.success) {
       mostrarNotificacion('✅ Usuario actualizado exitosamente', 'success');
       cancelarEdicion();
-      cargarUsuarios();
+      
+      // Si la tabla está visible, recargar datos
+      if (tablaVisible) {
+        cargarUsuarios();
+      }
     } else {
       mostrarNotificacion(result.mensaje || '❌ Error al actualizar usuario', 'error');
     }
