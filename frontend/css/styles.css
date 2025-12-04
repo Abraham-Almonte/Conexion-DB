@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     min-height: 100vh;
     padding: 20px;
 }
@@ -15,50 +15,54 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: white;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(138, 43, 226, 0.3);
     overflow: hidden;
+    border: 1px solid rgba(138, 43, 226, 0.2);
 }
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8b00ff 0%, #4b0082 100%);
     color: white;
     padding: 30px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
 }
 
 header h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 header p {
     font-size: 1.1rem;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 main {
     padding: 40px;
 }
 
-.form-section, .table-section {
+.form-section, .table-section, .consultar-section {
     margin-bottom: 40px;
 }
 
 h2 {
-    color: #333;
+    color: #e0e0e0;
     margin-bottom: 20px;
     font-size: 1.8rem;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #8b00ff;
     padding-bottom: 10px;
 }
 
 #usuario-form {
-    background: #f8f9fa;
+    background: rgba(26, 26, 46, 0.8);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.3);
 }
 
 .form-group {
@@ -68,7 +72,7 @@ h2 {
 label {
     display: block;
     margin-bottom: 8px;
-    color: #333;
+    color: #d0d0d0;
     font-weight: 600;
     font-size: 0.95rem;
 }
@@ -79,16 +83,23 @@ input[type="tel"],
 input[type="number"] {
     width: 100%;
     padding: 12px 15px;
-    border: 2px solid #ddd;
+    border: 2px solid rgba(138, 43, 226, 0.3);
     border-radius: 6px;
     font-size: 1rem;
     transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
 }
 
 input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #8b00ff;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .button-group {
@@ -109,38 +120,114 @@ input:focus {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8b00ff 0%, #4b0082 100%);
     color: white;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background: rgba(108, 117, 125, 0.8);
     color: white;
+    border: 1px solid rgba(138, 43, 226, 0.3);
 }
 
 .btn-secondary:hover {
-    background: #5a6268;
+    background: rgba(90, 98, 104, 0.9);
+    border-color: #8b00ff;
+}
+
+/* Botón Consultar Registros */
+.consultar-section {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.btn-consultar {
+    background: linear-gradient(135deg, #9b00ff 0%, #6200ea 100%);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-consultar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+    background: linear-gradient(135deg, #b000ff 0%, #7200ff 100%);
+}
+
+.btn-consultar:active {
+    transform: translateY(-1px);
+}
+
+/* Tabla */
+.table-section {
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-close-table {
+    background: rgba(220, 53, 69, 0.8);
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.btn-close-table:hover {
+    background: rgba(200, 35, 51, 1);
+    transform: scale(1.05);
 }
 
 .table-container {
     overflow-x: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(138, 43, 226, 0.3);
+    border: 1px solid rgba(138, 43, 226, 0.2);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: rgba(26, 26, 46, 0.9);
 }
 
 thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8b00ff 0%, #4b0082 100%);
     color: white;
 }
 
@@ -153,17 +240,17 @@ th {
 }
 
 tbody tr {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(138, 43, 226, 0.2);
     transition: background 0.2s ease;
 }
 
 tbody tr:hover {
-    background: #f8f9fa;
+    background: rgba(138, 43, 226, 0.1);
 }
 
 td {
     padding: 15px;
-    color: #333;
+    color: #d0d0d0;
 }
 
 .btn-edit, .btn-delete {
@@ -178,21 +265,25 @@ td {
 }
 
 .btn-edit {
-    background: #28a745;
+    background: linear-gradient(135deg, #00c853 0%, #00a844 100%);
     color: white;
+    box-shadow: 0 2px 8px rgba(0, 200, 83, 0.3);
 }
 
 .btn-edit:hover {
-    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 200, 83, 0.5);
 }
 
 .btn-delete {
-    background: #dc3545;
+    background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
     color: white;
+    box-shadow: 0 2px 8px rgba(255, 23, 68, 0.3);
 }
 
 .btn-delete:hover {
-    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 23, 68, 0.5);
 }
 
 .notification {
@@ -202,12 +293,13 @@ td {
     padding: 15px 25px;
     border-radius: 6px;
     font-weight: 600;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transform: translateY(-20px);
     transition: all 0.3s ease;
     z-index: 1000;
     max-width: 400px;
+    border: 1px solid rgba(138, 43, 226, 0.3);
 }
 
 .notification.show {
@@ -216,12 +308,12 @@ td {
 }
 
 .notification.success {
-    background: #28a745;
+    background: linear-gradient(135deg, #00c853 0%, #00a844 100%);
     color: white;
 }
 
 .notification.error {
-    background: #dc3545;
+    background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
     color: white;
 }
 
@@ -246,11 +338,27 @@ td {
         flex-direction: column;
     }
     
+    .table-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .btn-close-table {
+        width: 100%;
+    }
+    
     table {
         font-size: 0.9rem;
     }
     
     th, td {
         padding: 10px;
+    }
+    
+    .btn-consultar {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 }
