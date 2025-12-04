@@ -51,9 +51,21 @@
                 </form>
             </section>
 
-            <!-- Tabla de Usuarios -->
-            <section class="table-section">
-                <h2>Lista de Usuarios</h2>
+            <!-- Botón para Consultar Registros -->
+            <section class="consultar-section">
+                <button class="btn btn-consultar" id="btn-consultar">
+                    📋 Consultar Registros
+                </button>
+            </section>
+
+            <!-- Tabla de Usuarios (Oculta inicialmente) -->
+            <section class="table-section" id="table-section" style="display: none;">
+                <div class="table-header">
+                    <h2>Lista de Usuarios</h2>
+                    <button class="btn btn-close-table" id="btn-close-table">
+                        ✖ Cerrar
+                    </button>
+                </div>
                 <div class="table-container">
                     <table id="usuarios-table">
                         <thead>
